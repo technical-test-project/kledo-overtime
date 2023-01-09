@@ -1,0 +1,519 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "APIs For Kledo Overtime",
+        "description": "API doc Kledo Overtime with Swagger",
+        "termsOfService": "https://swagger.io/terms/",
+        "contact": {
+            "email": "alvin.set25@gmail.com"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/employees": {
+            "post": {
+                "tags": [
+                    "Employee"
+                ],
+                "summary": "Insert a data employee",
+                "operationId": "bfad4edec29b0edbd684a0afbd847510",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "default": "Budi"
+                                    },
+                                    "salary": {
+                                        "default": 2000000,
+                                        "oneOf": [
+                                            {
+                                                "type": "integer"
+                                            }
+                                        ]
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "name": "Budi",
+                                    "salary": 2000000
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "examples": {
+                                    "result": {
+                                        "summary": "Created Successfully",
+                                        "value": {
+                                            "message": "Data Employee berhasil dibuat",
+                                            "data": {
+                                                "name": "Budi",
+                                                "salary": "2000000",
+                                                "updated_at": "2023-01-09T15:23:26.000000Z",
+                                                "created_at": "2023-01-09T15:23:26.000000Z",
+                                                "id": 1
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Content",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "examples": {
+                                    "result1": {
+                                        "summary": "Unprocessable Content - Rule [Name] required",
+                                        "value": {
+                                            "message": "Unprocessable Content",
+                                            "errors": {
+                                                "name": "Name harus diisi"
+                                            }
+                                        }
+                                    },
+                                    "result2": {
+                                        "summary": "Unprocessable Content - Rule [Name] string",
+                                        "value": {
+                                            "message": "Unprocessable Content",
+                                            "errors": {
+                                                "name": "Name harus berupa string"
+                                            }
+                                        }
+                                    },
+                                    "result3": {
+                                        "summary": "Unprocessable Content - Rule [Name] min",
+                                        "value": {
+                                            "message": "Unprocessable Content",
+                                            "errors": {
+                                                "name": "Name harus memiliki minimum 2 karakter"
+                                            }
+                                        }
+                                    },
+                                    "result4": {
+                                        "summary": "Unprocessable Content - Rule [Name] unique",
+                                        "value": {
+                                            "message": "Unprocessable Content",
+                                            "errors": {
+                                                "name": "Name sudah terdaftar"
+                                            }
+                                        }
+                                    },
+                                    "result5": {
+                                        "summary": "Unprocessable Content - Rule [Salary] required",
+                                        "value": {
+                                            "message": "Unprocessable Content",
+                                            "errors": {
+                                                "salary": "Salary harus diisi"
+                                            }
+                                        }
+                                    },
+                                    "result6": {
+                                        "summary": "Unprocessable Content - Rule [Salary] integer",
+                                        "value": {
+                                            "message": "Unprocessable Content",
+                                            "errors": {
+                                                "salary": "Salary harus berupa bilangan bulat"
+                                            }
+                                        }
+                                    },
+                                    "result7": {
+                                        "summary": "Unprocessable Content - Rule [Salary] min",
+                                        "value": {
+                                            "message": "Unprocessable Content",
+                                            "errors": {
+                                                "salary": "Salary harus memiliki nilai minimum 2.000.000"
+                                            }
+                                        }
+                                    },
+                                    "result8": {
+                                        "summary": "Unprocessable Content - Rule [Salary] max",
+                                        "value": {
+                                            "message": "Unprocessable Content",
+                                            "errors": {
+                                                "salary": "Salary harus memiliki nilai maksimum 10.000.000"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/overtimes": {
+            "post": {
+                "tags": [
+                    "Overtime"
+                ],
+                "summary": "Insert a data Overtime",
+                "operationId": "1c0aaebff4e157c86d9b7197cb202612",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "employee_id": {
+                                        "type": "integer"
+                                    },
+                                    "date": {
+                                        "type": "string",
+                                        "default": "2023-01-10"
+                                    },
+                                    "time_started": {
+                                        "type": "string",
+                                        "default": "10:30"
+                                    },
+                                    "time_ended": {
+                                        "type": "string",
+                                        "default": "11:25"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "employee_id": 1,
+                                    "date": "2023-01-10",
+                                    "time_started": "10:30",
+                                    "time_ended": "11:25"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "examples": {
+                                    "result": {
+                                        "summary": "Created Successfully",
+                                        "value": {
+                                            "message": "Data Overtime berhasil dibuat",
+                                            "data": {
+                                                "employee_id": "1",
+                                                "date": "2023-01-11",
+                                                "time_started": "11:28",
+                                                "time_ended": "11:58",
+                                                "updated_at": "2023-01-09T17:28:14.000000Z",
+                                                "created_at": "2023-01-09T17:28:14.000000Z"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Content",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "examples": {
+                                    "result1": {
+                                        "summary": "Unprocessable Content - Rule [Employee Id] required",
+                                        "value": {
+                                            "message": "Unprocessable Content",
+                                            "errors": {
+                                                "employee_id": "Employee Id harus diisi"
+                                            }
+                                        }
+                                    },
+                                    "result2": {
+                                        "summary": "Unprocessable Content - Rule [Employee Id] integer",
+                                        "value": {
+                                            "message": "Unprocessable Content",
+                                            "errors": {
+                                                "employee_id": "Employee Id harus berupa bilangan bulat"
+                                            }
+                                        }
+                                    },
+                                    "result3": {
+                                        "summary": "Unprocessable Content - Rule [Employee Id] exists",
+                                        "value": {
+                                            "message": "Unprocessable Content",
+                                            "errors": {
+                                                "employee_id": "Employee Id tidak memiliki id referensi pada tabel Employee"
+                                            }
+                                        }
+                                    },
+                                    "result4": {
+                                        "summary": "Unprocessable Content - Rule [Date] required",
+                                        "value": {
+                                            "message": "Unprocessable Content",
+                                            "errors": {
+                                                "date": "Date harus diisi"
+                                            }
+                                        }
+                                    },
+                                    "result5": {
+                                        "summary": "Unprocessable Content - Rule [Date] date",
+                                        "value": {
+                                            "message": "Unprocessable Content",
+                                            "errors": {
+                                                "date": "Date tidak sesuai dengan format tanggal [Y-m-d]"
+                                            }
+                                        }
+                                    },
+                                    "result6": {
+                                        "summary": "Unprocessable Content - Rule [Date] unique",
+                                        "value": {
+                                            "message": "Unprocessable Content",
+                                            "errors": {
+                                                "date": "Date sudah terdaftar, tidak bisa mendaftarkan tanggal yang sama untuk satu employee"
+                                            }
+                                        }
+                                    },
+                                    "result7": {
+                                        "summary": "Unprocessable Content - Rule [Time Started] required",
+                                        "value": {
+                                            "message": "Unprocessable Content",
+                                            "errors": {
+                                                "time_started": "Time Started harus diisi"
+                                            }
+                                        }
+                                    },
+                                    "result8": {
+                                        "summary": "Unprocessable Content - Rule [Time Started] date_format",
+                                        "value": {
+                                            "message": "Unprocessable Content",
+                                            "errors": {
+                                                "time_started": "Time Started tidak sesuai dengan format [Y-m-d]"
+                                            }
+                                        }
+                                    },
+                                    "result9": {
+                                        "summary": "Unprocessable Content - Rule [Time Started] before",
+                                        "value": {
+                                            "message": "Unprocessable Content",
+                                            "errors": {
+                                                "time_started": "Time Started tidak boleh lebih dari time_ended"
+                                            }
+                                        }
+                                    },
+                                    "result10": {
+                                        "summary": "Unprocessable Content - Rule [Time End] required",
+                                        "value": {
+                                            "message": "Unprocessable Content",
+                                            "errors": {
+                                                "time_ended": "Time End harus diisi"
+                                            }
+                                        }
+                                    },
+                                    "result11": {
+                                        "summary": "Unprocessable Content - Rule [Time End] date_format",
+                                        "value": {
+                                            "message": "Unprocessable Content",
+                                            "errors": {
+                                                "time_ended": "Time End tidak sesuai dengan format [Y-m-d]"
+                                            }
+                                        }
+                                    },
+                                    "result12": {
+                                        "summary": "Unprocessable Content - Rule [Time End] after",
+                                        "value": {
+                                            "message": "Unprocessable Content",
+                                            "errors": {
+                                                "time_ended": "Time End tidak boleh lebih dari time_started"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/overtime-pays/calculate": {
+            "get": {
+                "tags": [
+                    "Overtime"
+                ],
+                "summary": "Calculate Overtime Pays",
+                "operationId": "fdf3683abee7378700737c921d97a6cd",
+                "parameters": [
+                    {
+                        "name": "month",
+                        "in": "query",
+                        "description": "Parameter with mutliple examples",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "examples": {
+                            "string": {
+                                "summary": "Month [Y-m]",
+                                "value": "2023-01"
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "examples": {
+                                    "result": {
+                                        "summary": "Showed Successfully",
+                                        "value": {
+                                            "message": "OK",
+                                            "data": [
+                                                {
+                                                    "id": 1,
+                                                    "name": "udin1",
+                                                    "salary": 2000000,
+                                                    "overtimes": [
+                                                        {
+                                                            "id": 1,
+                                                            "date": "2023-01-04",
+                                                            "time_started": "11:28:00",
+                                                            "time_ended": "12:48:00",
+                                                            "overtime_duration": "1 Jam"
+                                                        },
+                                                        {
+                                                            "id": 2,
+                                                            "date": "2023-01-04",
+                                                            "time_started": "10:28:00",
+                                                            "time_ended": "12:48:00",
+                                                            "overtime_duration": "2 Jam"
+                                                        }
+                                                    ],
+                                                    "overtime_duration_total": 3,
+                                                    "amount": 34682
+                                                }
+                                            ]
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Content",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "examples": {
+                                    "result1": {
+                                        "summary": "Unprocessable Content - Rule [Month] date_format",
+                                        "value": {
+                                            "message": "Unprocessable Content",
+                                            "errors": {
+                                                "month": "Month tidak sesuai dengan format [Y-m]"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/settings": {
+            "patch": {
+                "tags": [
+                    "Settings"
+                ],
+                "summary": "Update a data setting",
+                "operationId": "c2e26f7ef1d9147d9cc3fd80807444a4",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "key": {
+                                        "type": "string",
+                                        "default": "overtime_method"
+                                    },
+                                    "value": {
+                                        "default": 1,
+                                        "oneOf": [
+                                            {
+                                                "type": "string"
+                                            },
+                                            {
+                                                "type": "integer"
+                                            }
+                                        ]
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "key": "overtime_method",
+                                    "value": 2
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "examples": {
+                                    "result": {
+                                        "summary": "Update Successfully",
+                                        "value": {
+                                            "message": "Data setting berhasil diupdate",
+                                            "data": []
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Content",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "examples": {
+                                    "result2": {
+                                        "summary": "Unprocessable Content - Rule [Key] in:overtime_method",
+                                        "value": {
+                                            "message": "Unprocessable Content",
+                                            "errors": {
+                                                "key": "Key hanya boleh diisi dengan 'overtime_method'"
+                                            }
+                                        }
+                                    },
+                                    "result3": {
+                                        "summary": "Unprocessable Content - Rule [Value] exists where code=overtime_method",
+                                        "value": {
+                                            "message": "Unprocessable Content",
+                                            "errors": {
+                                                "value": "Value tidak memiliki id referensi dengan code 'overtime_method'"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
